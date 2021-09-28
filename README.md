@@ -48,15 +48,16 @@ Podemos incluir mais arquivos ou pastas que serao ignorados pelo Nodemom relacio
 
 ### Express
 
-O [Express](https://expressjs.com) tera dupla funcao, sera usado para fazer o roteamento do app e para tratar as requisicoes API.
+O [Express](https://expressjs.com) sera usado para definir as rotas e gerenciar as requisicoes na API.
 ```
 $ npm i --save express
 ```
 
 ### JsonWebToken
 
-[JsonWebToken](https://github.com/auth0/node-jsonwebtoken)
+O [JsonWebToken](https://github.com/auth0/node-jsonwebtoken) sera usado para manipular o token
 ```
+$ npm i --save jsonwebtoken
 ```
 
 ## 3. Server 
@@ -286,6 +287,4 @@ Para executar o serviço ```$ npm run dev```
 4. Execute novamente ```GET /user/3``` enviando o token para receber **200 OK** e os dados do usuário 3 
 5. Execute ```GET /user/5``` para receber um **204 No Content**
 6. Execute novamente ```GET /user/3``` após 5min (para expirar o token) para receber **401 Unauthorized**
-
-
 
