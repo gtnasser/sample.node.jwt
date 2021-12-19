@@ -1,7 +1,7 @@
 # sample.node.jwt - API com autenticação por token JWT
 
 Features:
-  * rota [POST /login] usada para autenticar o usuário, retorna token JWT com dados do usuário
+  * rota [POST /login] usada para autenticar	 o usuário, retorna token JWT com dados do usuário
   * rota [GET /help] retorn a lista das rotas implementadas 
   * rota [GET /user] valida o token e retorna a lista de usuarios 
   * rota [GET /user/:id] valida o token e retorna dados do usuario selecionado
@@ -255,7 +255,7 @@ token...
                 jwt.verify(_token, token.publicKey, token.authOptions, (err) => {
                     resolve(err === null);
                 })
-        })
+        })1234
     }
 ```
 
@@ -280,11 +280,30 @@ app.get('/user/:id', (req, res, next) => {
 Para executar o serviço ```$ npm run dev```
 
 1. Execute ```GET /user``` para obter a lista de usuários
-1. Execute ```GET /user/6``` para obter a lista de usuários
 2. Execute ```GET /user/3``` para receber **401 Unauthorized**
 3. Execute ```POST /login``` passando os dados de um usuário (ex admin/1234) para receber o token
 3. Execute ```POST /login``` passando dados inválidos para receber **400 Bad Request**
 4. Execute novamente ```GET /user/3``` enviando o token para receber **200 OK** e os dados do usuário 3 
 5. Execute ```GET /user/5``` para receber um **204 No Content**
 6. Execute novamente ```GET /user/3``` após 5min (para expirar o token) para receber **401 Unauthorized**
+
+Exemplos:
+
+Curl:
+
+curl -X GET http://localhost:3000/user/3
+curl -X POST --data "username=admin&password=1234" http://localhost:3000/login
+curl -X GET -H "Authorization:Bearer eyJhbG...yNUIug" http://localhost:3000/user/3
+
+Postman: 
+
+POST 
+body x-www-form-urlencoded
+username=admin
+password=1234
+
+GET
+Auth Bearer Token
+eyJhbG...yNUIug
+
 
